@@ -183,6 +183,10 @@ def get_field_info_schema(field: ModelField) -> Tuple[Dict[str, Any], bool]:
         schema['default'] = encode_default(field.default)
         schema_overrides = True
 
+    if field.field_info.extra:
+        schema.update(field.field_info.extra)
+        schema_overrides = True
+
     return schema, schema_overrides
 
 
